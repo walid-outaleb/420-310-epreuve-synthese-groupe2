@@ -7,7 +7,7 @@ Les membres sont désignés par A, B, C et D. Chaque tâche comprend les règles
 
 Les quatre sprints ci-dessous représentent un ordre de réalisation proposé. Leur durée doit être adaptée à l’échéance du cours.
 
-| Étape | Personne A | Personne B | Personne C | Personne D |
+| Étape | mounir | walid | Akli | Personne D |
 |---|---|---|---|---|
 | **Sprint 1 — Préparer une partie** | Création des joueurs et des héros : nom, unicité, caractéristiques et espèces. | Classes, calcul des PV et de la magie, équipement initial et restrictions par classe. | Création, entrée et sortie des lobbys, sélection des héros, limite de quatre joueurs et lancement de la partie. | Mise en place du dépôt, vérifications automatiques et structure du stockage en mémoire. Consultation de l’état des parties. |
 | **Sprint 2 — Jouer un premier combat** | Bestiaire, création des créatures et comportements automatiques du Gobelin, de l’Orc et du Troll. | Rencontres disponibles, démarrage du combat, initiative, rounds, participant actif et fin du tour. | Attaques, cibles valides, dégâts, critiques, défense et vérification de la fin du combat. | Inventaire, armes, armures, calcul de la CA, potions et changement d’arme. Intégration de ces actions au combat. |
