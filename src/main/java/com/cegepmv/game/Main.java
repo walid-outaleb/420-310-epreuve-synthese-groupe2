@@ -1,4 +1,4 @@
-package com.cegepmv.project;
+package com.cegepmv.game;
 
 public class Main {
     public static void main(String[] args) {
