@@ -1,0 +1,13 @@
+### Création d'un lobby — POST /lobbies
+### Démarrer le serveur (Main.java), puis cliquer sur ▶ à côté d'une requête.
+
+### ✅ Cas valide — attendu : 201 Created + en-tête Location: /lobbies/{id}
+POST http://localhost:8080/lobbies
+Player: akli2006
+
+### ❌ SCHÉMA — en-tête Player absent — attendu : 400 (généré par Jersey)
+POST http://localhost:8080/lobbies
+
+### ❌ DOMAINE — en-tête Player vide — attendu : 422 "Host id cannot be blank."
+POST http://localhost:8080/lobbies
+Player:
