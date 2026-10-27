@@ -11,3 +11,18 @@ POST http://localhost:8080/lobbies
 ### ❌ DOMAINE — en-tête Player vide — attendu : 422 "Host id cannot be blank."
 POST http://localhost:8080/lobbies
 Player:
+
+### Création d'un joueur — attendu : 201 et Location: /players/{id}
+POST http://localhost:8080/players
+
+### Consulter le joueur : remplacer l'identifiant par celui de Location
+GET http://localhost:8080/players/00000000-0000-0000-0000-000000000000
+
+### Identifiant mal formé — attendu : 400
+GET http://localhost:8080/players/invalide
+
+### Un corps non vide est refusé — attendu : 400
+POST http://localhost:8080/players
+Content-Type: application/json
+
+{invalid

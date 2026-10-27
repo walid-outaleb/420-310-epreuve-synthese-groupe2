@@ -93,3 +93,22 @@ Une tâche est terminée lorsque ses critères d’acceptation sont satisfaits, 
 Au début de chaque sprint, l’équipe estime et répartit les issues. Un point quotidien de 15 minutes sert à signaler l’avancement et les blocages. Chaque sprint se termine par une démonstration et une rétrospective.
 
 Chaque membre doit pouvoir expliquer l’architecture générale et les interactions entre les modules. La réflexion individuelle reste le travail de chacun.
+
+**7. Démarrer et tester l'API**
+
+Prérequis : JDK 25 et Maven. Depuis la racine du projet :
+
+```bash
+mvn test       # compile le projet et exécute les tests automatisés
+mvn exec:java  # démarre l'API sur http://localhost:8080
+```
+
+Le stockage est en mémoire : les données disparaissent lorsque le serveur s'arrête.
+Les exemples de requêtes sont dans `requests.http`.
+
+Pour créer un joueur, envoyer `POST /players` sans corps. La réponse `201 Created`
+contient son adresse dans l'en-tête `Location`. Consulter cette adresse avec `GET` :
+la réponse contient un objet JSON avec son `id`. Un identifiant mal formé retourne
+`400`, et un joueur inconnu retourne `404`. Le joueur est représenté par son seul
+identifiant pour l'instant ; les autres champs restent à définir avec l'équipe.
+Cet identifiant ne constitue pas une authentification.
