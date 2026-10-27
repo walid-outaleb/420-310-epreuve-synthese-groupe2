@@ -112,3 +112,15 @@ la réponse contient un objet JSON avec son `id`. Un identifiant mal formé reto
 `400`, et un joueur inconnu retourne `404`. Le joueur est représenté par son seul
 identifiant pour l'instant ; les autres champs restent à définir avec l'équipe.
 Cet identifiant ne constitue pas une authentification.
+
+**8. Caractéristiques et espèces : travail en cours**
+
+Le module `hero/domain` distingue les valeurs choisies de 3 à 18 des valeurs
+après les ajustements d'espèce. Les quatre espèces de la première version et le
+calcul des modificateurs sont couverts par des tests unitaires. Ces règles ne sont
+pas encore reliées à une route de création de héros.
+
+À clarifier avec le client : la valeur minimale après une pénalité d'espèce et
+la manière de traiter un éventuel dépassement de 20. Avec les valeurs initiales
+et espèces actuellement prévues, les bonus atteignent au plus 20. Aucun minimum
+supplémentaire après ajustement n'a été fixé à ce stade.
