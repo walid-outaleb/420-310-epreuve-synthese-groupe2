@@ -1,3 +1,6 @@
 package com.cegepmv.game.lobby.application;
 
-public record LobbyOutput(String id, String hostId, int maximumPlayers) {}
+import java.util.List;
+
+public record LobbyOutput(
+        String id, String state, String hostId, List<MemberOutput> players, int availableSeats) {}

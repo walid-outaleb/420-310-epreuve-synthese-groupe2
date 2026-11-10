@@ -1,16 +1,44 @@
-### Création d'un lobby — POST /lobbies
-### Démarrer le serveur (Main.java), puis cliquer sur ▶ à côté d'une requête.
+### Lobbys — démarrer le serveur (Main.java), puis cliquer sur ▶ à côté d'une requête.
+### L'en-tête Player est provisoire : il sera remplacé par Authorization: Bearer <jeton> (J2).
 
-### ✅ Cas valide — attendu : 201 Created + en-tête Location: /lobbies/{id}
+### L1 ✅ Créer un lobby — attendu : 201 Created + Location: /lobbies/{id} + représentation du lobby
 POST http://localhost:8080/lobbies
 Player: akli2006
 
-### ❌ SCHÉMA — en-tête Player absent — attendu : 400 (généré par Jersey)
+### L1 ❌ Déjà membre d'un lobby ouvert — rejouer la requête précédente : 409 ALREADY_IN_LOBBY
+POST http://localhost:8080/lobbies
+Player: akli2006
+
+### L1 ❌ Non authentifié — en-tête Player absent — attendu : 401 NOT_AUTHENTICATED
 POST http://localhost:8080/lobbies
 
-### ❌ DOMAINE — en-tête Player vide — attendu : 422 "Host id cannot be blank."
-POST http://localhost:8080/lobbies
-Player:
+### L2 ✅ Lister les lobbys ouverts avec de la place — attendu : 200 [{id, hostId, playerCount, maxPlayers}]
+GET http://localhost:8080/lobbies
+Player: akli2006
+
+### L2 ✅ Détail d'un lobby : remplacer l'identifiant par celui de Location — attendu : 200
+GET http://localhost:8080/lobbies/00000000-0000-0000-0000-000000000000
+Player: akli2006
+
+### L2 ❌ Lobby inexistant — attendu : 404 LOBBY_NOT_FOUND
+GET http://localhost:8080/lobbies/inconnu
+Player: akli2006
+
+### L3 ✅ Rejoindre un lobby : remplacer l'identifiant du lobby, utiliser un autre joueur — attendu : 201 + Location + lobby à jour
+POST http://localhost:8080/lobbies/00000000-0000-0000-0000-000000000000/players
+Player: joueur2
+
+### L3 ❌ Rejoindre le même lobby deux fois — attendu : 409 ALREADY_MEMBER
+POST http://localhost:8080/lobbies/00000000-0000-0000-0000-000000000000/players
+Player: joueur2
+
+### L4 ✅ Quitter un lobby (joueur2 se retire lui-même) — attendu : 204 No Content
+DELETE http://localhost:8080/lobbies/00000000-0000-0000-0000-000000000000/players/joueur2
+Player: joueur2
+
+### L4 ❌ Retirer un autre joueur — attendu : 403 FORBIDDEN
+DELETE http://localhost:8080/lobbies/00000000-0000-0000-0000-000000000000/players/joueur2
+Player: akli2006
 
 ### Création d'un joueur — attendu : 201 et Location: /players/{id}
 POST http://localhost:8080/players
